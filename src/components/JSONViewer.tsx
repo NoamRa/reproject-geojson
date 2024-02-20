@@ -1,5 +1,5 @@
 type JSONViewerProps = {
-  json: object;
+  json: Record<string, unknown>;
 };
 
 export function JSONViewer({ json }: JSONViewerProps) {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 type JSONTextAreaProps = {
-  json: object;
-  onChange: (json: object) => void;
+  json: Record<string, unknown>;
+  onChange: (json: Record<string, unknown>) => void;
 };
 
 export function JSONTextArea({ json, onChange }: JSONTextAreaProps) {
@@ -23,7 +23,9 @@ export function JSONTextArea({ json, onChange }: JSONTextAreaProps) {
       onChange(updatedJson);
     } catch (err) {
       const message =
-        err && typeof err === "object" && "message" in err ? `Invalid JSON: ${err.message as string}` : "";
+        err && typeof err === "object" && "message" in err
+          ? `Invalid JSON: ${err.message as string}`
+          : "";
       setError(message);
     }
   };

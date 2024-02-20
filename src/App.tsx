@@ -1,17 +1,21 @@
+import { GeoJsonObject } from "geojson";
 import { useEffect, useState } from "react";
 import { JSONTextArea } from "./components/JSONTextArea";
 import { JSONViewer } from "./components/JSONViewer";
+import { Map } from "./components/Map";
 import {
   GeoJsonWithCrs,
   reprojectGeoJSONIfNeeded,
 } from "./reprojectGeoJSON/reprojectGeoJSON";
 
 export default function App() {
-  const [inputGeoJSON, setInputGeoJSON] = useState({});
-  const [outputGeoJSON, setOutputGeoJSON] = useState({});
+  const [inputGeoJSON, setInputGeoJSON] = useState<Record<string, unknown>>({});
+  const [outputGeoJSON, setOutputGeoJSON] = useState<
+    GeoJsonObject | undefined
+  >();
 
   useEffect(() => {
-    reprojectGeoJSONIfNeeded(inputGeoJSON as GeoJsonWithCrs).then(
+    reprojectGeoJSONIfNeeded(inputGeoJSON as unknown as GeoJsonWithCrs).then(
       setOutputGeoJSON
     );
   }, [inputGeoJSON]);
@@ -23,7 +27,8 @@ export default function App() {
       </header>
       <main>
         <JSONTextArea json={inputGeoJSON} onChange={setInputGeoJSON} />
-        <JSONViewer json={outputGeoJSON} />
+        {outputGeoJSON && <JSONViewer json={outputGeoJSON} />}
+        <Map geoJSON={outputGeoJSON} />
       </main>
     </>
   );
