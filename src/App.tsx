@@ -27,7 +27,9 @@ export default function App() {
       </header>
       <main>
         <JSONTextArea json={inputGeoJSON} onChange={setInputGeoJSON} />
-        {outputGeoJSON && <JSONViewer json={outputGeoJSON} />}
+        <details>
+          {outputGeoJSON && <JSONViewer json={outputGeoJSON as unknown as Record<string, unknown>} />}
+        </details>
         <Map geoJSON={outputGeoJSON} />
       </main>
     </>
