@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { GeoJsonObject } from "geojson";
+/// <reference path='./proj4-fully-loaded.d.ts' />
 import proj4 from "proj4-fully-loaded";
 
 export type GeoJsonWithCrs = GeoJsonObject & {

@@ -24,7 +24,7 @@ export function Map({ geoJSON }: MapProps) {
       <BoundsPanner
         bounds={geoJSONisRelevant ? LeafletGeoJSON(geoJSON).getBounds() : undefined}
       />
-      {geoJSONisRelevant && <GeoJSON data={geoJSON} />}
+      {geoJSONisRelevant && geoJSON && <GeoJSON data={geoJSON} />}
     </MapContainer>
   );
 }
